@@ -3,8 +3,14 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var semver = require('semver');
-var program = require('commander');
+// var program = require('commander');
+const { program } = require('commander');
 
+program
+  .option('--first')
+  .option('-s, --separator <char>');
+
+program.parse();
 var startTime = moment();
 
 var _config = false;
@@ -22,11 +28,11 @@ var util = {
     if(_config)
       return _config;
 
-    if(!program.config)
-        util.die('Please specify a config file.', true);
+    // if(!program.config)
+    //     util.die('Please specify a config file.', true);
 
-    if(!fs.existsSync(util.dirs().gekko + program.config))
-      util.die('Cannot find the specified config file.', true);
+    // if(!fs.existsSync(util.dirs().gekko + program.config))
+    //   util.die('Cannot find the specified config file.', true);
 
     _config = require(util.dirs().gekko + program.config);
     return _config;
